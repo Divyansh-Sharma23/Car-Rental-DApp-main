@@ -10,7 +10,7 @@ import CarMini from "../images/cars-big/mini-box.png";
 
 
 import contractABI from '../ABI/abi.json';
-const contractAddress = "0x8d1aD974F97AE8671E8F345f254a5CFD22CE21BF";
+const contractAddress = "0xFBa7AfF846aE4Ef68DB86C5366206D3b2789a883";
 
 
 const provider = new ethers.providers.Web3Provider(window.ethereum);
@@ -152,21 +152,20 @@ function BookCar() {
           // Prompt the user to pay using MetaMask
           const paymentAmount = ethers.utils.parseUnits(totalCost.toFixed(2), 'ether'); // Convert to wei
           const gasLimit = 300000;
-  
+         // console.log(signer);
           // Send the payment transaction to the carRentalContract
-          const transaction = await signer.sendTransaction({
-            to: carRentalContract.address, // Replace with the address of your carRentalContract
+            signer.sendTransaction({
+            to: contractAddress, // Replace with the address of your carRentalContract
             value: paymentAmount,
             gasLimit: gasLimit,
-          });
+          }).then(r=>console.log(r)).catch(e=>console.log(e))
           
-          // Check if the transaction was successful
-          await transaction.wait();
+          // // Check if the transaction was successful
+          // await transaction.wait();
   
-          errorMsg.style.display = "none";
-          setModal(!modal);
-          const doneMsg = document.querySelector(".booking-done");
-          doneMsg.style.display = "flex";
+          // setModal(!modal);
+          // const doneMsg = document.querySelector(".booking-done");
+          // doneMsg.style.display = "flex";
         }
       } catch (error) {
         // Handle errors (e.g., user rejected the transaction)

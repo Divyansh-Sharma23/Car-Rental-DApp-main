@@ -79,7 +79,7 @@ export const CAR_DATA = [
   [
     {
       name: "Tata Nexon",
-      price: "0.02",
+      price: "0.00",
       img: Mini,
       model: "Nexon",
       mark: "Tata",
